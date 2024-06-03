@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+import sys
 from IPython.terminal.embed import InteractiveShellEmbed
 from IPython.core.interactiveshell import ExecutionResult
 
@@ -140,3 +141,7 @@ class IPythonShell(InteractiveShellEmbed):
             return json.loads(op)
         except:
             return []
+
+    def write(self, data):
+        # Dirty fix to make DEPRECATED write once again available and avoid massive diffs
+        sys.stdout.write(data)
